@@ -7,6 +7,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,13 @@ import { FooterComponent } from './shared/footer/footer.component';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    
   ],
-  providers: [],
+  providers: [
+    AngularFireAuthModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

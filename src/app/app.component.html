@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+
+<div *ngIf="usuario && !cargando; else showLogin">
+    <h1>Hello {{ usuario.email }}!</h1>
+    <router-outlet></router-outlet>
+    <button (click)="logout()">Logout</button>
+  </div>
+  <ng-template #showLogin>
+    <div *ngIf="cargando">
+      Cargado...
+    </div>
+    <p>Please login.</p>
+    <button (click)="login()">Login with Google</button>
+  </ng-template>
